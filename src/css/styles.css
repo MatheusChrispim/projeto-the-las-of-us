@@ -1,0 +1,154 @@
+/*geralmente começa a estilizar de cima para baixo e da esquerda para direita*/
+body{
+    /*font importada é tipo texto para usar*/
+    font-family: 'Poppins', sans-serif; 
+    
+    /*define o espaço máximo da tag e faz a tag se adaptar o tamanho da tela*/
+    max-width: 1280px; 
+   
+    /*sequencia em cima e embaixo e depois esquerda e direita*/
+    margin: 0 auto; 
+}
+
+/*: é um pseudo-elemento*/
+main:after{
+    content: '';
+    min-height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left:0;
+    background: linear-gradient(90deg, rgba(0,0,0,0) 26%, rgba(0,0,0,0.8) 80%, rgba(40,40,40,1) 100%);
+    z-index: -1;
+}
+.conteudo{
+    /*alinha elemento verticalmente ou horizontalmente de maneira dinâmica. para usar o flex, tem que pensar em pais e filhos aí coloca o display flex sempre no pai primeiro e dpois outras propriedades de flex nos filhos*/
+    display: flex;
+
+    /*aqui é onde eu defino a direção do flex*/
+    flex-direction: column;
+
+    /*aqui definimos altura mínima vh é viewport height, pega a largura mínima da janela onde tá exibindo o site*/
+    min-height: 100vh;
+
+    /*aqui vai espaçar o conteúdo dos filhos do flex*/
+    justify-content: space-evenly;
+}
+
+
+/*aqui estamos especificando qual classe devemos estilizar que está dentro de outra classe*/
+.informacoes .logo{
+
+    /*definindo a largura já define a altura automaticamente*/
+    max-width: 350px;
+
+    /*aqui usamos a função invert da propriedade filter para inverter a cor da imagem sempre jogando a cor inversa da atual*/
+    filter:invert(1);
+    margin-bottom: 80px;
+}
+
+.informacoes .descricao{
+
+    /*usa % na largura para usar uma parte da largura atual do pai não faz sentido usar pixel ou outras medidas , assim fica mais preciso*/
+    width: 49%;
+    font-size:24px;
+    color: #ffffff;
+
+    /*espaçamento entre linhas*/
+    line-height: 30px;
+}
+
+.botoes-carrossel{
+    display: flex;
+    justify-content: center;
+
+    /*separa tags filhas*/
+    gap: 20px;
+}
+
+.botoes-carrossel .botao{
+    background-color: #ffffff;
+    width: 15px;
+    height: 15px;
+
+    /*arredonda a borda do elemento*/
+    border-radius: 50%;
+    border: 2px solid transparent;
+
+    /*troca para deixar como seleção no mouse*/
+    cursor: pointer;
+    border-color: #ffffff;
+}
+
+/*quando não tem espaço eu digo para estilizar esse elemento que tem duas classes declaradas*/
+.botoes-carrossel .botao.selecionado{
+    background-color: #1d8346;
+}
+
+.menu-lateral{
+
+    /*aqui tira o elemento do fluxo normal da página e joga pra cima (pode coloar ele pra cima ou p baixo) depois especifica a posição top, left, right, bottom*/
+    position:fixed;
+    top: 0px;;
+    right:0;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.menu-lateral ul{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.menu-lateral .icone{
+    width: 30px;
+    filter: invert(1);
+
+    /*criar um tipo de animação e seta a duração e como vai ser a animação, se é suave ou não*/
+    transition: 0.3s ease-in-out;
+}
+
+/*hover significa que é quando passa o mouse em cima*/
+.menu-lateral .icone:hover{
+
+    /*transforma com a opção de escalar/aumentar o icone*/
+    transform: scale(1.2);
+}
+
+.carrossel{
+    position:fixed;
+    top:0;
+    left:0;
+    width: 100%;
+
+    /*eixo z: elimina a profundidade, como trabalhar com o enviar para tras ou trazer pra frente*/
+    z-index:-1;
+}
+
+
+.carrossel .imagem{
+    width: 100%;
+    height: 100vh;
+
+    /*ajusta a imagem sem perder a proporção correta e distorcer ela*/
+    object-fit:cover;
+    display: none;
+    animation: mudarImagem 0.7s;
+}
+
+.carrossel .imagem.ativa{
+    display: block;
+}
+
+@keyframes mudarImagem {
+    from{
+        opacity: 0.85;
+    }
+    to{
+        opacity: 1;
+    }
+}

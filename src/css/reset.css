@@ -1,0 +1,13 @@
+*{
+    margin:0; /*espaçamento externo do bloco */
+    padding:0; /*espaçamento interno do bloco*/
+    box-sizing: border-box;
+}
+
+ul{
+    list-style:none; /*remove as bolinhas das listas*/
+}
+
+a{
+    text-decoration: none; /*remove estilo das ancoras hyperlink*/
+}
